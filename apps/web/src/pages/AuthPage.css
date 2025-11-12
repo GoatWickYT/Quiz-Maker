@@ -1,0 +1,63 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0e0e0e;
+        --text-primary: #e0e0e0;
+        --text-secondary: #b4b4b4;
+        --accent: #b88d00;
+        --hover: #6e6331;
+    }
+}
+
+:root {
+    --bg-color: #f5f5f5;
+    --text-primary: 43, 43, 43;
+    --text-secondary: #3b3b3b;
+    --accent: #ffd447;
+    --hover: #f8ef70;
+}
+
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: rgb(var(--text-primary));
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 300px;
+}
+
+.auth-form input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--text-secondary);
+    font-size: 1rem;
+}
+
+.auth-form button {
+    padding: 0.5rem;
+    background-color: var(--accent);
+    color: rgb(var(--text-primary));
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background-color: var(--hover);
+}
+
+.auth-page span {
+    text-align: center;
+}
+
+.auth-page span a {
+    cursor: pointer;
+    color: var(--accent);
+}

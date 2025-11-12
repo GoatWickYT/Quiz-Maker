@@ -1,0 +1,51 @@
+:root {
+    /*LIGHT*/
+    --bg-color: #f5f5f5;
+    --card-bg: #e0e0e0;
+    --text-primary: 43, 43, 43;
+    --text-secondary: #3b3b3b;
+    --accent: #ffd447;
+    --highlight: #f7e893;
+    --hover: #f8ef70;
+    --navbar-bg: #727272;
+    --warning: #ffe924;
+}
+
+.dark {
+    /*DARK*/
+    --bg-color: #0e0e0e;
+    --card-bg: #1a1a1a;
+    --text-primary: 255, 255, 255;
+    --text-secondary: #b4b4b4;
+    --accent: #b88d00;
+    --highlight: #867308;
+    --hover: #6e6331;
+    --navbar-bg: #1a1a1a;
+    --warning: #967800;
+}
+
+:root {
+    font-family: 'Courier New', Courier, monospace, 'IBM Plex Sans', system-ui, Avenir, Helvetica,
+        Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+#root {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: rgb(var(--text-primary));
+    place-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+#root > {
+    min-width: 100vw;
+    min-height: 100vh;
+}

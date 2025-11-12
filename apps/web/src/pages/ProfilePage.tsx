@@ -1,0 +1,11 @@
+import '../index.css';
+
+const ProfilePage = () => {
+    return (
+        <main>
+            <h1>ProfilePage</h1>
+        </main>
+    );
+};
+
+export default ProfilePage;
