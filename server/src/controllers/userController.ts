@@ -39,7 +39,7 @@ const getUserByUsername = async (
         const user = await User.getUserByUsername(username);
         if (!user)
             return res.status(404).json({ message: 'No user found with name', name: username });
-        return res.status(200).json(user);
+        return res.status(200).json({ username: user.username, avatar: user.avatar });
     } catch (err) {
         next(err);
     }
@@ -53,7 +53,10 @@ const getAllUsers = async (
     try {
         const users: IUser[] = await User.getAllUsers();
         if (users.length === 0) return res.status(404).json({ message: 'No users in database' });
-        return res.status(200).json({ users });
+        const safeUsers: { username: string; avatar: string }[] = users.map((user) => {
+            return { username: user.username, avatar: user.avatar };
+        });
+        return res.status(200).json({ safeUsers });
     } catch (err) {
         next(err);
     }

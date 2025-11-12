@@ -8,6 +8,8 @@ import userRouter from './routes/userRoute.js';
 import gameRouter from './routes/gameRoute.js';
 import notFoundHandler from './errors/notFoundHandler.js';
 import errorHandler from './errors/errorHandler.js';
+import authRouter from './routes/authRoute.js';
+import { attachUser } from './middleware/attachUser.js';
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.get('/favicon.ico', (req: Request, res: Response) => {
     res.status(204).send();
 });
 
+app.use('/api', authRouter);
+app.use(attachUser);
 app.use('/api', userRouter);
 app.use('/api', gameRouter);
 

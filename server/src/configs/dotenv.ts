@@ -11,6 +11,7 @@ function requireEnv(name: string): string {
 const config = {
     port: Number(requireEnv('PORT')),
     mongoUri: requireEnv('DB_URI'),
+    jwtSecret: requireEnv('JWT_SECRET'),
 };
 
 export default config;

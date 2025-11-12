@@ -8,7 +8,6 @@ import {
     updateAvatarValidator,
     updateUsernameValidator,
 } from '../validators/userValidations.js';
-
 const userRouter = Router();
 
 userRouter.get('/users', UserController.getAllUsers);

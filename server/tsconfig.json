@@ -3,10 +3,10 @@
         // File Layout
         "rootDir": "./src",
         "outDir": "./dist",
-
         "module": "node20",
         "moduleResolution": "nodenext",
         "target": "ES2020",
+
         // For nodejs:
         "lib": ["es2020"],
         "types": ["node"],
@@ -35,5 +35,6 @@
         "moduleDetection": "force",
         "skipLibCheck": true
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["src/scripts/*"]
 }

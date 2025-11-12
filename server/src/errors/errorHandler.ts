@@ -1,11 +1,8 @@
 import type { Request, Response } from 'express';
 
-const errorHandler = (err: unknown, req: Request, res: Response) => {
-    if (err instanceof Error) {
-        res.status(500).json({ error: 'Server error' });
-    } else {
-        res.status(500).json({ error: 'Server error: Unknown error' });
-    }
+const errorHandler = (err: unknown, req: Request, res: Response): Response | void => {
+    if (err instanceof Error) return res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Server error: Unknown error' });
 };
 
 export default errorHandler;
