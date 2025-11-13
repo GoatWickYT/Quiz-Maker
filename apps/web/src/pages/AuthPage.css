@@ -1,19 +1,29 @@
 @media (prefers-color-scheme: dark) {
-    :root {
+    .Auth {
+        /*DARK*/
         --bg-color: #0e0e0e;
-        --text-primary: #e0e0e0;
+        --card-bg: #414141;
+        --text-primary: 255, 255, 255;
         --text-secondary: #b4b4b4;
-        --accent: #b88d00;
-        --hover: #6e6331;
+        --accent: #ffd447;
+        --navbar-bg: #1a1a1a;
+        --warning: #967800;
     }
 }
 
-:root {
-    --bg-color: #f5f5f5;
-    --text-primary: 43, 43, 43;
-    --text-secondary: #3b3b3b;
-    --accent: #ffd447;
-    --hover: #f8ef70;
+@media (prefers-color-scheme: light) {
+    .Auth {
+        /*LIGHT*/
+        --bg-color: #f5f5f5;
+        --card-bg: #929292;
+        --text-primary: 43, 43, 43;
+        --text-secondary: #3b3b3b;
+        --accent: #b88d00;
+        --highlight: #f7e893;
+        --hover: #6e6331;
+        --navbar-bg: #c7c7c7;
+        --warning: #ffe924;
+    }
 }
 
 .auth-page {

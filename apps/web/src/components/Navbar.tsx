@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 import ElectricBorder from './ElectricBorder';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [searchActive, setSearchActive] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -64,7 +66,7 @@ const Navbar = () => {
                             autoFocus={true}
                             className="navbar-search-input"
                             type="text"
-                            placeholder="Search quizzes..."
+                            placeholder={t('nav-search')}
                             onBlur={handleSearchBlur}
                             onKeyDown={handleSearchKeyDown}
                         />
@@ -72,10 +74,10 @@ const Navbar = () => {
                 )}
             </div>
             <div className="navbar-search">
-                <h1 className="navbar-title">AgentQ</h1>
+                <h1 className="navbar-title">{t('nav-title')}</h1>
                 {!searchActive ? (
                     <span className="search-hint" onClick={handleSearchClick}>
-                        {'click to search'}
+                        {t('nav-search-placeholder')}
                     </span>
                 ) : (
                     <ElectricBorder
@@ -90,17 +92,18 @@ const Navbar = () => {
                             className="navbar-search-input"
                             autoFocus={true}
                             type="text"
-                            placeholder="Search quizzes..."
+                            placeholder={t('nav-search')}
                             onBlur={handleSearchBlur}
                             onKeyDown={handleSearchKeyDown}
                         />
                     </ElectricBorder>
                 )}
             </div>
-
-            <div className="theme-switch" onClick={toggleTheme}>
-                <div className={`slider ${darkMode ? 'dark' : 'light'}`}>
-                    <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
+            <div className="theme-switch-container">
+                <div className="theme-switch" onClick={toggleTheme}>
+                    <div className={`slider ${darkMode ? 'dark' : 'light'}`}>
+                        <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
+                    </div>
                 </div>
             </div>
         </nav>

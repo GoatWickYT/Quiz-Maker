@@ -1,25 +1,23 @@
 :root {
     /*LIGHT*/
     --bg-color: #f5f5f5;
-    --card-bg: #e0e0e0;
+    --card-bg: #929292;
     --text-primary: 43, 43, 43;
     --text-secondary: #3b3b3b;
-    --accent: #ffd447;
-    --highlight: #f7e893;
-    --hover: #f8ef70;
-    --navbar-bg: #727272;
+    --accent: #836400;
+    --highlight: #81794c;
+    --hover: #6e6331;
+    --navbar-bg: #c7c7c7;
     --warning: #ffe924;
 }
 
 .dark {
     /*DARK*/
     --bg-color: #0e0e0e;
-    --card-bg: #1a1a1a;
-    --text-primary: 255, 255, 255;
+    --card-bg: #414141;
+    --text-primary: 245, 245, 245;
     --text-secondary: #b4b4b4;
-    --accent: #b88d00;
-    --highlight: #867308;
-    --hover: #6e6331;
+    --accent: #ecc134;
     --navbar-bg: #1a1a1a;
     --warning: #967800;
 }
@@ -31,21 +29,17 @@
     font-weight: 400;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
+    width: 100vw !important;
+    min-height: 100vh;
+    margin: 0 !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 body,
 #root {
-    margin: 0;
     background-color: var(--bg-color);
     color: rgb(var(--text-primary));
-    place-items: center;
-    min-width: 100vw;
-    min-height: 100vh;
-}
-
-#root > {
-    min-width: 100vw;
-    min-height: 100vh;
+    place-items: left;
+    margin: 0 !important;
 }

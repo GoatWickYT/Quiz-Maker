@@ -2,95 +2,109 @@ import type { EmblaOptionsType } from 'embla-carousel';
 import '../index.css';
 import './MainPage.css';
 import EmblaCarousel from '../components/EmblaCarousel';
+import { useTranslation } from 'react-i18next';
+import { useRef } from 'react';
 
 const MainPage = () => {
-    const secretAgentQualities: string[] = [
-        'Ghosted Since Birth',
-        'Discount Store Bond',
-        'Rusty Steel Trap',
-        'Permanent Halloween Costume',
-        'Professional Self-Distraction',
-        'Olympic-Level Poker Face',
-        'Fluent in Lies',
-        'Quick Mind, Slow Texts',
-        'Overconfident Briefing Skipper',
-        'Problem-Causing Problem Solver',
-        'Vanishing Work Ninja',
-        'Vending Machine Hacker',
-        'Cardio Avoidance Specialist',
-        'Accidental Marksman Extraordinaire',
-        'Emotionally Unavailable Operative',
-        'Password Amnesia Master',
-        'Snack-Driven Loyalist',
-        'Calm Until Meeting',
-        'Printer Nemesis Genius',
-        'Graceful Disaster Planner',
-    ];
-
-    const username: string = localStorage.getItem('username') || '';
+    const { t } = useTranslation();
+    const USERNAME: string = localStorage.getItem('username') || '';
     const OPTIONS: EmblaOptionsType = {};
     const SLIDE_COUNT = 10;
     const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+    const QUALITIES: string[] = t('mp-qualities', { returnObjects: true }) as string[];
+    const MISSIONS: string[] = t('mp-missions', { returnObjects: true }) as string[];
+
+    const numbersRef = useRef<number[]>(
+        Array.from(
+            { length: 6 },
+            (_, i) =>
+                i === 0
+                    ? Math.floor(Math.random() * 10000) // Agent Number 0-9999
+                    : i === 5
+                    ? Math.floor(Math.random() * MISSIONS.length) // mission index
+                    : Math.floor(Math.random() * QUALITIES.length), // quality indexes
+        ),
+    );
+
+    const numbers = numbersRef.current;
+
+    const selectedQualities = [
+        QUALITIES[numbers[1] % QUALITIES.length],
+        QUALITIES[numbers[2] % QUALITIES.length],
+        QUALITIES[numbers[3] % QUALITIES.length],
+        QUALITIES[numbers[4] % QUALITIES.length],
+    ];
+
+    const selectedMission = MISSIONS[numbers[5] % MISSIONS.length].split('|');
+
     return (
         <main className="MainPage">
             <div className="welcome">
+                <h1>{t('mp-welcome').split(',')[0]}</h1>
                 <h1>
-                    Welcome back Agent {username.split('')[0].toUpperCase()}
-                    {username.slice(1, username.length)}
+                    {t('mp-welcome')
+                        .split(',')[1]
+                        .replace('<name>', USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1))}
                 </h1>
             </div>
-            <div className="agent-container">
-                <div className="profile">
-                    <h2>Agent file</h2>
-                    <span className="description">
-                        <div>
-                            Name:
-                            <span className="Name">
-                                {username.charAt(0).toUpperCase() + username.slice(1)}
-                            </span>
-                        </div>
-                        <div>
-                            Code Name:
-                            <span className="CodeName">{username.charAt(0).toUpperCase()}</span>
-                        </div>
-                        <div>
-                            Agent Number:
-                            <span className="Number">
-                                A-
-                                {Math.ceil(Math.random() * 9999)
-                                    .toString()
-                                    .padStart(4, '0')}
-                            </span>
-                        </div>
-                    </span>
-                    <span className="image"></span>
-                    <div>
-                        Qualities:
-                        <ul>
-                            <li>{secretAgentQualities[Math.floor(Math.random() * 20)]}</li>
-                            <li>{secretAgentQualities[Math.floor(Math.random() * 20)]}</li>
-                            <li>{secretAgentQualities[Math.floor(Math.random() * 20)]}</li>
-                            <li>{secretAgentQualities[Math.floor(Math.random() * 20)]}</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div className="agent-notes">
-                    <h2>Notes / Description</h2>
-                    <textarea placeholder="Enter mission notes or agent intel here..."></textarea>
+            <div className="agent-container">
+                <div className="agent-container-inner">
+                    <div className="profile">
+                        <h2>{t('mp-agentfile')}</h2>
+                        <span className="description">
+                            <div className="field-row">
+                                <span className="field-name">{t('mp-file-name')}:</span>
+                                <span className="field-value">
+                                    {USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1)}
+                                </span>
+                            </div>
+                            <div className="field-row">
+                                <span className="field-name">{t('mp-file-codename')}:</span>
+                                <span className="field-value">
+                                    {USERNAME.charAt(0).toUpperCase()}
+                                </span>
+                            </div>
+                            <div className="field-row">
+                                <span className="field-name">{t('mp-file-number')}:</span>
+                                <span className="field-value">
+                                    A-{numbers[0].toString().padStart(4, '0')}
+                                </span>
+                            </div>
+                        </span>
+
+                        <span className="image"></span>
+
+                        <div>
+                            {t('mp-quality')}:
+                            <ul>
+                                {selectedQualities.map((q, i) => (
+                                    <li key={i}>{q}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="agent-notes">
+                        <h2>{t('mp-briefing')}</h2>
+                        <div>
+                            <h2>{selectedMission[0]}</h2>
+                            {selectedMission[1]}
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div className="carousel popular">
-                <h1>Popular Quizzes</h1>
+                <h1>{t('mp-popular')}:</h1>
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             </div>
             <div className="carousel most-played">
-                <h1>Most Played Quizzes</h1>
+                <h1>{t('mp-played')}:</h1>
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             </div>
             <div className="carousel own">
-                <h1>Your Quizzes</h1>
+                <h1>{t('mp-own')}:</h1>
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             </div>
         </main>

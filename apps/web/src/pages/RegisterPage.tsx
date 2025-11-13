@@ -29,7 +29,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <main className="auth-page">
+        <main className="Auth auth-page">
             <h1>Register</h1>
             <form onSubmit={handleSubmit} className="auth-form">
                 <input

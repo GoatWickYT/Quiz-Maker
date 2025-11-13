@@ -24,7 +24,7 @@ const LoginPage = () => {
     };
 
     return (
-        <main className="auth-page">
+        <main className="Auth auth-page">
             <h1>Login</h1>
             <form onSubmit={handleSubmit} className="auth-form">
                 <input

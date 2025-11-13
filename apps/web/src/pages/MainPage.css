@@ -1,10 +1,41 @@
-.MainPage {
-    width: 100vw;
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    background-color: var(--card-bg);
+    width: 60vw;
+    margin: 50px auto;
+    border-radius: 10px;
+}
+
+.welcome h1 {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--navbar-bg);
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.welcome h1:first-child {
+    font-size: 3rem;
+    width: 80%;
+    font-weight: 700;
+    color: rgb(var(--text-primary));
+}
+
+.welcome h1:last-child {
+    font-size: 2rem;
+    width: 40%;
+    font-weight: 600;
+    color: var(--accent);
 }
 
 .carousel {
-    width: 90vw;
-    border: white 2px solid;
+    border: rgb(var(--text-primary) 2px solid);
     margin: auto;
     margin-bottom: 20px;
 }
@@ -13,68 +44,75 @@
     color: var(--highlight);
     margin: 0;
 }
-/* Container holding wallet and notes */
+
 .agent-container {
-    background: #3a3a3a;
+    background: var(--navbar-bg);
+    border-radius: 25px;
     display: flex;
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
     max-width: 900px;
     margin: 20px auto;
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* Wallet-style profile */
+.agent-container-inner {
+    background: var(--navbar-bg);
+    border: var(--accent) 2px dashed;
+    border-radius: 20px;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    max-width: 900px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .profile {
     flex: 1;
     padding: 20px;
-    background: #2c2c2c; /* leather-like dark gray */
-    color: #e0e0e0;
+    background: var(--card-bg);
+    color: rgb(var(--text-primary));
     border-radius: 16px;
     box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.6), 0 4px 20px rgba(0, 0, 0, 0.4);
     position: relative;
 }
 
-/* Wallet title / header */
 .profile h2 {
     text-align: center;
-    color: #ffcc00; /* golden leather stitching feel */
+    color: var(--accent);
     margin-bottom: 15px;
     font-size: 1.8rem;
     letter-spacing: 1px;
-    border-bottom: 1px dashed #ffcc00; /* like a stitched edge */
+    border-bottom: 1px dashed var(--accent);
     padding-bottom: 8px;
 }
 
-/* Agent info blocks resemble card slots */
 .profile .description div {
     margin-bottom: 12px;
     padding: 8px 12px;
-    background: #3a3a3a; /* card slot background */
+    background: var(--navbar-bg);
     border-radius: 8px;
     box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Info text styling */
 .profile .description span {
     margin-left: 8px;
     font-weight: bold;
-    color: #ffffff;
+    color: rgb(var(--text-primary));
 }
 
 .profile .Name {
-    color: #00bfff; /* blue card accent */
+    color: #00bfff;
 }
 
 .profile .CodeName {
-    color: #ff9900; /* orange card accent */
+    color: #ff9900;
 }
 
 .profile .Number {
-    color: #ff3366; /* pink/red accent */
+    color: #ff3366;
 }
 
-/* Image slot like a photo ID in wallet */
 .profile .image {
     display: block;
     width: 100%;
@@ -82,11 +120,10 @@
     margin: 15px 0;
     background: #555;
     border-radius: 10px;
-    border: 2px solid #3a3a3a;
+    border: 2px solid var(--navbar-bg);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Qualities appear like small wallet tabs/cards */
 .profile ul {
     list-style-type: none;
     padding-left: 0;
@@ -97,12 +134,12 @@
 
 .profile ul li {
     flex: 1 1 calc(50% - 8px);
-    background: #3a3a3a;
+    background: var(--navbar-bg);
     margin-bottom: 6px;
     padding: 6px 10px;
     border-radius: 6px;
     font-size: 0.95rem;
-    color: #e0e0e0;
+    color: rgb(var(--text-primary));
     text-align: center;
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s, background 0.2s;
@@ -111,10 +148,9 @@
 .profile ul li:hover {
     transform: translateY(-2px);
     background: #444;
-    color: #ffcc00;
+    color: var(--accent);
 }
 
-/* Notes section remains simple but with wallet aesthetic */
 .agent-notes {
     flex: 1;
     display: flex;
@@ -122,14 +158,14 @@
 }
 
 .agent-notes h2 {
-    color: #ffcc00;
+    color: var(--accent);
     margin-bottom: 10px;
     font-size: 1.5rem;
-    border-bottom: 1px dashed #ffcc00;
+    border-bottom: 1px dashed var(--accent);
     padding-bottom: 6px;
 }
 
-.agent-notes textarea {
+.agent-notes div {
     flex: 1;
     resize: none;
     padding: 15px;
@@ -137,11 +173,45 @@
     border: none;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1rem;
-    background: #3a3a3a;
-    color: #e0e0e0;
+    background: var(--navbar-bg);
+    color: rgb(var(--text-primary));
     box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
-.agent-notes textarea::placeholder {
-    color: #bbb;
+.agent-notes div h2 {
+    font-size: 1rem;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.field-name {
+    font-weight: bold;
+    color: #ffd447;
+}
+
+.field-value {
+    color: #fff;
+}
+
+@media (max-width: 769px) {
+    .agent-container-inner {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 481px) {
+    .welcome h1:first-child {
+        font-size: 2rem !important;
+    }
 }
