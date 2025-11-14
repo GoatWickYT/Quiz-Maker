@@ -19,9 +19,8 @@ const AppRoutes = () => {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/home" element={<MainPage />} />
                 <Route path="/explore" element={<ExplorePage />} />
-                <Route path="/profile/:id" element={<ProfilePage />} />
+                <Route path="/profile/" element={<ProfilePage />} />
                 <Route path="/quiz/:id" element={<QuizPage />} />
-                <Route path="/login" element={<Navigate to="/home" />} />
             </Routes>
             <LanguageSwitch />
         </>

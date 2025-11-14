@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './context/AuthContext';
 import AppRoutes from './AppRoutes';
 import './i18n';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -12,5 +13,6 @@ createRoot(document.getElementById('root')!).render(
                 <AppRoutes />
             </AuthProvider>
         </BrowserRouter>
+        <ToastContainer />
     </StrictMode>,
 );

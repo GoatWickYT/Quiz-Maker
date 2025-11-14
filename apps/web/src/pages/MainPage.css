@@ -1,43 +1,43 @@
 .welcome {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
     background-color: var(--card-bg);
-    width: 60vw;
-    margin: 50px auto;
+    justify-content: center;
+    flex-direction: column;
     border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    margin: 50px auto;
+    display: flex;
+    width: 60vw;
+    gap: 10px;
 }
 
 .welcome h1 {
-    margin-bottom: 12px;
-    padding: 8px 12px;
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.5);
     background: var(--navbar-bg);
+    margin-bottom: 12px;
     text-align: center;
     border-radius: 8px;
-    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
 }
 
 .welcome h1:first-child {
+    color: rgb(var(--text-primary));
+    font-weight: 700;
     font-size: 3rem;
     width: 80%;
-    font-weight: 700;
-    color: rgb(var(--text-primary));
 }
 
 .welcome h1:last-child {
+    color: var(--accent);
+    font-weight: 600;
     font-size: 2rem;
     width: 40%;
-    font-weight: 600;
-    color: var(--accent);
 }
 
 .carousel {
     border: rgb(var(--text-primary) 2px solid);
-    margin: auto;
     margin-bottom: 20px;
+    margin: auto;
 }
 .carousel > h1 {
     background-color: var(--navbar-bg);
@@ -46,59 +46,59 @@
 }
 
 .agent-container {
+    font-family: 'Courier New', Courier, monospace;
     background: var(--navbar-bg);
     border-radius: 25px;
+    margin: 20px auto;
+    max-width: 900px;
     display: flex;
     padding: 10px;
     gap: 20px;
-    max-width: 900px;
-    margin: 20px auto;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .agent-container-inner {
-    background: var(--navbar-bg);
+    font-family: 'Courier New', Courier, monospace;
     border: var(--accent) 2px dashed;
+    background: var(--navbar-bg);
     border-radius: 20px;
+    max-width: 900px;
     display: flex;
     padding: 20px;
     gap: 20px;
-    max-width: 900px;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .profile {
-    flex: 1;
-    padding: 20px;
-    background: var(--card-bg);
-    color: rgb(var(--text-primary));
-    border-radius: 16px;
     box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.6), 0 4px 20px rgba(0, 0, 0, 0.4);
+    color: rgb(var(--text-primary));
+    background: var(--card-bg);
+    border-radius: 16px;
     position: relative;
+    padding: 20px;
+    flex: 1;
 }
 
 .profile h2 {
-    text-align: center;
+    border-bottom: 1px dashed var(--accent);
     color: var(--accent);
     margin-bottom: 15px;
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-    border-bottom: 1px dashed var(--accent);
     padding-bottom: 8px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 1.8rem;
 }
 
 .profile .description div {
-    margin-bottom: 12px;
-    padding: 8px 12px;
-    background: var(--navbar-bg);
-    border-radius: 8px;
     box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.5);
+    background: var(--navbar-bg);
+    margin-bottom: 12px;
+    border-radius: 8px;
+    padding: 8px 12px;
 }
 
 .profile .description span {
-    margin-left: 8px;
-    font-weight: bold;
     color: rgb(var(--text-primary));
+    font-weight: bold;
+    margin-left: 8px;
 }
 
 .profile .Name {
@@ -114,68 +114,68 @@
 }
 
 .profile .image {
-    display: block;
-    width: 100%;
-    height: 120px;
-    margin: 15px 0;
-    background: #555;
-    border-radius: 10px;
-    border: 2px solid var(--navbar-bg);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--navbar-bg);
+    border-radius: 10px;
+    background: #555;
+    margin: 15px 0;
+    display: block;
+    height: 120px;
+    width: 100%;
 }
 
 .profile ul {
     list-style-type: none;
+    flex-wrap: wrap;
     padding-left: 0;
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
 }
 
 .profile ul li {
-    flex: 1 1 calc(50% - 8px);
-    background: var(--navbar-bg);
-    margin-bottom: 6px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    color: rgb(var(--text-primary));
-    text-align: center;
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s, background 0.2s;
+    color: rgb(var(--text-primary));
+    background: var(--navbar-bg);
+    flex: 1 1 calc(50% - 8px);
+    margin-bottom: 6px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 6px 10px;
 }
 
 .profile ul li:hover {
     transform: translateY(-2px);
-    background: #444;
     color: var(--accent);
+    background: #444;
 }
 
 .agent-notes {
-    flex: 1;
-    display: flex;
     flex-direction: column;
+    display: flex;
+    flex: 1;
 }
 
 .agent-notes h2 {
+    border-bottom: 1px dashed var(--accent);
     color: var(--accent);
+    padding-bottom: 6px;
     margin-bottom: 10px;
     font-size: 1.5rem;
-    border-bottom: 1px dashed var(--accent);
-    padding-bottom: 6px;
 }
 
 .agent-notes div {
-    flex: 1;
-    resize: none;
-    padding: 15px;
-    border-radius: 12px;
-    border: none;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    background: var(--navbar-bg);
-    color: rgb(var(--text-primary));
     box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(var(--text-primary));
+    background: var(--navbar-bg);
+    border-radius: 12px;
+    font-size: 1rem;
+    padding: 15px;
+    border: none;
+    resize: none;
+    flex: 1;
 }
 
 .agent-notes div h2 {
@@ -183,15 +183,15 @@
 }
 
 .description {
-    display: flex;
     flex-direction: column;
+    display: flex;
     gap: 8px;
 }
 
 .field-row {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    display: flex;
 }
 
 .field-name {
@@ -205,8 +205,8 @@
 
 @media (max-width: 769px) {
     .agent-container-inner {
-        display: flex;
         flex-direction: column;
+        display: flex;
     }
 }
 

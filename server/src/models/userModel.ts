@@ -28,7 +28,6 @@ const userSchema = new Schema<IUser>(
             type: String,
             required: true,
             trim: true,
-            endsWith: '.png',
             description: 'Static images provided by the server',
         },
     },
@@ -41,7 +40,7 @@ userSchema.statics['createUser'] = async function (
     password: string,
     avatar: string,
 ) {
-    if (!avatar) avatar = `avatar${Math.ceil(Math.random() * 10)}.png`;
+    if (!avatar) avatar = `basicAvatar.svg`;
     const user = new this({ username, password, avatar });
     if (password.length < 30) {
         console.warn('⚠️ Password might not be hashed!');
@@ -60,7 +59,7 @@ userSchema.statics['getAllUsers'] = async function () {
 };
 
 // Static method to delete a user by ID
-userSchema.statics['deleteUserById'] = async function (id: id) {
+userSchema.statics['deleteUser'] = async function (id: id) {
     return this.findByIdAndDelete(id);
 };
 

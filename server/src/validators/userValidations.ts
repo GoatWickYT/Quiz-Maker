@@ -49,6 +49,4 @@ export const updateAvatarValidator = [
         .withMessage('Avatar is required')
         .trim()
         .isString()
-        .matches(/\.png$/)
-        .withMessage('Avatar must be a .png file'),
 ];

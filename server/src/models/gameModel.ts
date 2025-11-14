@@ -81,6 +81,7 @@ const gameSchema = new Schema<IGame>(
             type: String,
             maxLength: 50,
             trim: true,
+            unique: true,
             required: true,
         },
         questions: {

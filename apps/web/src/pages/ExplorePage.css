@@ -1,0 +1,33 @@
+.game-page {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.games-inner {
+    background-color: var(--navbar-bg);
+    border: 2px dashed var(--accent);
+    justify-content: center;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+}
+.games {
+    background-color: var(--card-bg);
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    padding: 20px;
+    width: 90vw;
+}
+.create-game {
+    background-color: var(--highlight);
+    color: var(--text-secondary);
+    border-radius: 20px;
+    max-width: 30vw;
+    font-size: 2rem;
+    padding: 20px;
+}

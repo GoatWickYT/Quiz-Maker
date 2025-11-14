@@ -3,11 +3,24 @@ import '../index.css';
 import './MainPage.css';
 import EmblaCarousel from '../components/EmblaCarousel';
 import { useTranslation } from 'react-i18next';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import apiClient, { BACKEND_URL, token } from '../api/apiClient';
+import type { User } from '../types/User';
 
 const MainPage = () => {
     const { t } = useTranslation();
-    const USERNAME: string = localStorage.getItem('username') || '';
+    const user: User = JSON.parse(localStorage.getItem('user')!, (key, value) => {
+        if (key === '') {
+            return {
+                id: value?.id ?? '',
+                username: value?.username ?? 'Unknown',
+                password: value?.password ?? '',
+                avatar: value?.avatar ?? 'default-avatar.png',
+            };
+        }
+        return value;
+    });
+
     const OPTIONS: EmblaOptionsType = {};
     const SLIDE_COUNT = 10;
     const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
@@ -25,6 +38,17 @@ const MainPage = () => {
                     : Math.floor(Math.random() * QUALITIES.length), // quality indexes
         ),
     );
+
+    useEffect(() => {
+        apiClient
+            .get('/games', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => console.table(response.data))
+            .catch(() => console.error('Error getting games'));
+    }, []);
 
     const numbers = numbersRef.current;
 
@@ -44,7 +68,10 @@ const MainPage = () => {
                 <h1>
                     {t('mp-welcome')
                         .split(',')[1]
-                        .replace('<name>', USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1))}
+                        .replace(
+                            '<name>',
+                            user.username.charAt(0).toUpperCase() + user.username.slice(1),
+                        )}
                 </h1>
             </div>
 
@@ -56,13 +83,13 @@ const MainPage = () => {
                             <div className="field-row">
                                 <span className="field-name">{t('mp-file-name')}:</span>
                                 <span className="field-value">
-                                    {USERNAME.charAt(0).toUpperCase() + USERNAME.slice(1)}
+                                    {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
                                 </span>
                             </div>
                             <div className="field-row">
                                 <span className="field-name">{t('mp-file-codename')}:</span>
                                 <span className="field-value">
-                                    {USERNAME.charAt(0).toUpperCase()}
+                                    {user.username.charAt(0).toUpperCase()}
                                 </span>
                             </div>
                             <div className="field-row">
@@ -72,8 +99,11 @@ const MainPage = () => {
                                 </span>
                             </div>
                         </span>
-
-                        <span className="image"></span>
+                        <img
+                            className="image"
+                            src={`${BACKEND_URL.replace('/api', '')}/avatars/${user.avatar}`}
+                            alt="avatar"
+                        />
 
                         <div>
                             {t('mp-quality')}:

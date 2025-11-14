@@ -40,7 +40,6 @@ const getAllGames = async (
 ): Promise<Response | void> => {
     try {
         const games: IGame[] = await Game.getAllGames();
-        if (games.length === 0) return res.status(404).json({ message: 'No games in database' });
         return res.status(200).json({ games });
     } catch (err) {
         next(err);

@@ -39,7 +39,7 @@ const getUserByUsername = async (
         const user = await User.getUserByUsername(username);
         if (!user)
             return res.status(404).json({ message: 'No user found with name', name: username });
-        return res.status(200).json({ username: user.username, avatar: user.avatar });
+        return res.status(200).json({ id: user._id, username: user.username, avatar: user.avatar });
     } catch (err) {
         next(err);
     }
@@ -52,9 +52,8 @@ const getAllUsers = async (
 ): Promise<Response | void> => {
     try {
         const users: IUser[] = await User.getAllUsers();
-        if (users.length === 0) return res.status(404).json({ message: 'No users in database' });
-        const safeUsers: { username: string; avatar: string }[] = users.map((user) => {
-            return { username: user.username, avatar: user.avatar };
+        const safeUsers: { id: string; username: string; avatar: string }[] = users.map((user) => {
+            return { id: `${user._id}`, username: user.username, avatar: user.avatar };
         });
         return res.status(200).json({ safeUsers });
     } catch (err) {
@@ -69,8 +68,7 @@ const deleteUser = async (
 ): Promise<Response | void> => {
     try {
         const id: string | undefined = req.params['id'];
-        if (!id || Number.isNaN(id))
-            return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
+        if (!id) return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
 
         const user: IUser | null = await User.deleteUser(id);
         if (!user) return res.status(404).json({ message: 'User not found' });
@@ -94,8 +92,7 @@ const updatePassword = async (
 ): Promise<Response | void> => {
     try {
         const id: string | undefined = req.params['id'];
-        if (!id || Number.isNaN(id))
-            return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
+        if (!id) return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
 
         const password: string = req.body.password;
         if (!password)
@@ -111,6 +108,7 @@ const updatePassword = async (
         return res.status(200).json({
             message: 'Password updated successfully',
             user: {
+                id: user._id,
                 username: user.username,
                 avatar: user.avatar,
             },
@@ -127,21 +125,23 @@ const updateAvatar = async (
 ): Promise<Response | void> => {
     try {
         const id: string | undefined = req.params['id'];
-        if (!id || Number.isNaN(id))
-            return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
+        if (!id) return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
 
-        const newAvatar: string = req.body.avatar;
-        if (!newAvatar)
-            return res
-                .status(400)
-                .json({ message: 'Bad request: missing new avatar', missing: 'new avatar' });
+        const avatar: string = req.body.avatar?.trim();
+        if (avatar === undefined || avatar === null) {
+            return res.status(400).json({
+                message: 'Bad request: missing avatar',
+                missing: 'avatar',
+            });
+        }
 
-        const user: IUser | null = await User.updateAvatar(id, newAvatar);
+        const user: IUser | null = await User.updateAvatar(id, avatar);
         if (!user) return res.status(404).json({ message: 'User not found' });
 
         return res.status(200).json({
             message: 'Avatar updated successfully',
             user: {
+                id: user._id,
                 username: user.username,
                 avatar: user.avatar,
             },
@@ -158,8 +158,7 @@ const updateUsername = async (
 ): Promise<Response | void> => {
     try {
         const id: string | undefined = req.params['id'];
-        if (!id || Number.isNaN(id))
-            return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
+        if (!id) return res.status(400).json({ message: 'Bad request: missing id', missing: 'id' });
 
         const newUsername: string = req.body.username;
         if (!newUsername)
@@ -173,6 +172,7 @@ const updateUsername = async (
         return res.status(200).json({
             message: 'Username updated successfully',
             user: {
+                id: user._id,
                 username: user.username,
             },
         });
